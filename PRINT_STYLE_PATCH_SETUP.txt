@@ -1,0 +1,21 @@
+AGRAHARAM — COMBINED BILL + KOT AND POS STYLE UPDATE
+Frontend-only patch. Apply over your current running POS project. No backend changes or database migration are required.
+Stop the frontend terminal with Ctrl+C.
+cd /Users/sainathreddy/Documents/pos-frontend
+unzip -o ~/Downloads/Agraharam_Frontend_Combined_Print_Theme_Patch.zip
+npm run build
+npm run app
+Open http://localhost:5181. Close all older POS tabs/app windows and reopen to activate the updated service worker.
+
+PRINTING
+Open a saved bill receipt and click Print bill + KOT. A single print dialog contains two tickets: customer bill first, kitchen ticket second, separated by a page break. There is no separate KOT action. KOT shares the bill number and shows item names and quantities without prices. Cancelled bills can only print a cancelled bill copy, never a kitchen ticket.
+58 mm and 80 mm support remains available in Settings. Choose matching printer paper, margins None, scale 100%, and disable browser headers/footers. Paper cutting and roll page length are controlled by your printer/driver. Physical output still needs checking on your printer.
+
+BILLING
+The Place of supply input has been removed from the POS. Billing uses the business state configured in Settings in the background, including the cached business state when offline. If GST registration/state has not been configured, the GST report still shows missing-classification records for review.
+
+STYLE
+Coffee-brown sidebar, ivory/cream surfaces, botanical green actions, warm bronze prices/categories. Improved contrast, payment selection, compact image cards, quantity controls, current-bill item count and responsive billing layout. Uploaded images fit inside their thumbnails without cropping. Screen theme styles do not alter the monochrome thermal print document.
+
+CHECKS
+Production build passed; combined bill/KOT document checks, text escaping and 58/80 mm layout checks passed; simulated offline restart and sync checks passed. This patch does not change pending bill storage or backend data.
