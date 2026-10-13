@@ -2,6 +2,12 @@
 export const escapeHTML=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function ticketHTML(order,kind='bill',width=80){
     width=Number(width)===58?58:80;const kot=kind==='kot',e=escapeHTML,n=value=>Number(value||0).toFixed(2);
+    if(kot){
+        const time=new Date(order.created_at).toLocaleTimeString('en-IN',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit'});
+        const lines=order.items.map(i=>`<tr><td>${e(i.name)}</td><td class="qty">${e(i.qty)}</td></tr>`).join('');
+        const count=order.items.reduce((sum,i)=>sum+Number(i.qty||0),0);
+        return `<!doctype html><html><head><meta charset="utf-8"><title>KOT ${e(order.bill_number)}</title><style>@page{size:auto;margin:0}*{box-sizing:border-box}body{width:${width===58?50:72}mm;margin:0;font:12px Arial,sans-serif;color:#000}.heading{text-align:center;font-size:14px;font-weight:bold;margin:0 0 3px}.meta{display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;border-bottom:1px dashed #000;padding-bottom:3px}table{width:100%;border-collapse:collapse;table-layout:fixed}td{padding:2px 0;vertical-align:top;overflow-wrap:anywhere}td.qty{width:12mm;text-align:right;font-size:15px;font-weight:bold}.foot{border-top:1px dashed #000;margin-top:3px;padding-top:3px;display:flex;justify-content:space-between;font-weight:bold;font-size:11px}.flag{font-weight:bold;text-align:center}</style></head><body><div class="heading">AGRAHAARAM - KOT</div><div class="meta"><span>${e(order.bill_number)}</span><span>${e(time)}</span></div>${order.offline?'<div class="flag">OFFLINE - PENDING SYNC</div>':''}<table><tbody>${lines}</tbody></table><div class="foot"><span>TOTAL QTY</span><span>${e(count)}</span></div></body></html>`;
+    }
     const date=new Date(order.created_at);const stamp=date.toLocaleString('en-IN',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
     const payments=order.payments?.length?order.payments:[{method:order.payment,amount:order.total}];
     const lines=order.items.map((i,index)=>kot?`<tr><td>${index+1}. ${e(i.name)}</td><td class="num quantity">${e(i.qty)}</td></tr>`:`<tr class="item-name"><td colspan="4">${index+1}. ${e(i.name)}</td></tr><tr class="item-values"><td></td><td class="num">${e(i.qty)}</td><td class="num">${e(n(i.price))}</td><td class="num">${e(n(i.line_total))}</td></tr>`).join('');
