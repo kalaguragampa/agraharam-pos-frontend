@@ -63,3 +63,6 @@ body{background:#fff9f0;color:#292f27}.workspace{background:#fff9f0}.sidebar{bac
 .billitem .qty{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
 .billitem .qty button{flex:0 0 auto}
 @media(max-width:750px){.sidebar-collapsed .sidebar{width:60px;min-width:60px}}
+
+.sidebar-collapsed .main{margin-left:76px}
+@media(max-width:750px){.sidebar-collapsed .main{margin-left:60px}}
