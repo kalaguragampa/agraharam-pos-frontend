@@ -52,3 +52,14 @@ body{background:#fff9f0;color:#292f27}.workspace{background:#fff9f0}.sidebar{bac
 @media screen{
 .split-panel{padding:12px;background:#fff8ee;border:1px solid #e8c9a4;border-radius:10px;margin-bottom:12px}.split-panel>p{margin:0 0 12px}.split-input{display:grid;grid-template-columns:37px minmax(0,1fr) auto;gap:7px;align-items:center;margin-bottom:9px}.split-input input{min-width:0;padding:9px}.split-input .smallbtn{font-size:10px;padding:8px}.split-balance{display:flex;justify-content:space-between;gap:10px;border-top:1px solid #e7cdae;padding-top:10px;color:#93431d}.split-balance.balanced{color:#126648}.payments button{padding:10px 4px;font-size:12px}.receipt{max-width:400px;margin:0 auto;padding:7px 10px}.receipt h2{font-size:27px;letter-spacing:1.5px;margin-bottom:5px}.receipt-caption{text-transform:uppercase;letter-spacing:2px;font-size:10px!important;color:#795137}.receipt-legal{font-size:9px!important;margin:10px 0!important}.receipt .lines{margin-top:18px}.receipt-item{padding:11px 0;font-size:13px}.receipt-item span:first-child{font-weight:600}.receipt .grand{font-size:23px;border-top:2px solid #3f3024;padding-top:13px;margin:14px 0}.receipt-payments{background:#f5f8f0;border:1px solid #dce7d0;padding:12px;border-radius:8px;margin-top:14px}.receipt-payments>strong{display:block;text-transform:uppercase;font-size:10px;letter-spacing:1px;color:#426334;margin-bottom:11px}.receipt-payments .totalrow{font-size:13px;margin:6px 0}.receipt-payments .totalrow span:last-child{font-weight:700}.receipt-actions{justify-content:center}
 }
+
+/* Compact icon-only navigation, expandable without changing current page */
+.sidebar-collapsed .sidebar{width:76px;min-width:76px;padding-left:10px;padding-right:10px}
+.sidebar-collapsed .sidebar .brandname,.sidebar-collapsed .sidebar .nav-label,.sidebar-collapsed .sidebar .navarrow,.sidebar-collapsed .sidebar .sidebar-submenus,.sidebar-collapsed .sidebar .expand-groups,.sidebar-collapsed .sidebar footer{display:none}
+.sidebar-collapsed .sidebar .navbtn{justify-content:center;gap:0;padding-left:8px;padding-right:8px}
+.sidebar-collapsed .sidebar .navicon{margin:0}
+.sidebar-collapsed .main{min-width:0}
+.sidebar-collapsed .sidebar-toggle{display:flex}
+.billitem .qty{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.billitem .qty button{flex:0 0 auto}
+@media(max-width:750px){.sidebar-collapsed .sidebar{width:60px;min-width:60px}}
